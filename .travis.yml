@@ -5,32 +5,31 @@ script:
   - npm install
   - node ./index.js
 
-#docker
-# services:
-#   - docker
+docker
+services:
+  - docker
 
-#
-#before_deploy:
-#  #- zip -r makingboard *
-#  - mkdir -p deploy
-#  - mkdir -p output
-#  - mv build/libs/makingboard.war output/makingboard.war
-#  - docker build -t giraffeb/makingboard .
-#  - docker save -o deploy/makingboard.tar giraffeb/makingboard
 
-# deploy:
-#   - provider: s3
-#     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
-#     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-#     bucket: giraffeb-bucket # S3 버킷
-#     region: ap-northeast-2
-#     skip_cleanup: true
+before_deploy:
+ - mkdir -p deploy
+ - mkdir -p src
+ - cp ./src ./src
+ - docker build -t giraffeb/docker-test .
+ - docker save -o deploy/docker-test.tar giraffeb/test
 
-#     local_dir: deploy # before_deploy에서 생성한 디렉토리
-#     wait-until-deployed: true
-#     on:
-#       repo: giraffeb/makingboad
-#       branch: master
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: giraffeb-bucket # S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
+    on:
+      repo: giraffeb/docker-test
+      branch: master
 
 #   - provider: codedeploy # AWS CodeDeploy를 의미
 #     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
