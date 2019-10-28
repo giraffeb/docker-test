@@ -3,8 +3,6 @@ language: javascript
 script:
   - cd src
   - npm install
-  - node ./index.js
-
 
 services:
   - docker
