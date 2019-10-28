@@ -5,7 +5,7 @@ script:
   - npm install
   - node ./index.js
 
-docker
+
 services:
   - docker
 
