@@ -14,6 +14,7 @@ before_deploy:
  - mkdir -p deploy
  - docker build -t giraffeb/docker-test .
  - docker save -o ./deploy/docker-test.tar giraffeb/docker-test
+ - cp appspec.yml ./deploy/appspec.yml
 
 deploy:
   - provider: s3
