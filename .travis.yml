@@ -15,11 +15,11 @@ after_success:
  - docker build -t giraffeb/docker-test .
  - docker save -o ./deploy/docker-test.tar giraffeb/docker-test
  - cp ./appspec.yml ./deploy/appspec.yml
+ - cp ./deploy.sh ./deploy/deploy.sh
  - cd deploy
  - zip -r deploy *
  - cd ..
  - mkdir result
- - cp ./deploy.sh ./result/
  - cp ./deploy/deploy.zip ./result/
 
 deploy:
