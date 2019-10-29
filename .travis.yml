@@ -16,6 +16,7 @@ after_success:
  - docker save -o ./deploy/docker-test.tar giraffeb/docker-test
  - cp ./appspec.yml ./deploy/appspec.yml
  - cp ./deploy.sh ./deploy/deploy.sh
+ - cp ./execute-deploy.sh ./deploy/execute-deploy.sh
  - cd deploy
  - zip -r deploy *
  - cd ..
