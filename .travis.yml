@@ -13,7 +13,7 @@ services:
 before_deploy:
  - mkdir -p deploy
  - docker build -t giraffeb/docker-test .
- - docker save -o deploy/docker-test.tar giraffeb/docker-test
+ - docker save -o ./deploy/docker-test.tar giraffeb/docker-test
 
 deploy:
   - provider: s3
