@@ -2,4 +2,4 @@ version: 0.0
 os: linux
 files:
   - source:  /
-    destination: /home/centos/deploy-test
+    destination: /home/centos/deploy-test/
