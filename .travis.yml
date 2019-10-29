@@ -19,7 +19,7 @@ after_success:
  - zip -r deploy *
  - cd ..
  - mkdir result
- - cp .deploy.sh ./result/
+ - cp ./deploy.sh ./result/
  - cp ./deploy/deploy.zip ./result/
 
 deploy:
